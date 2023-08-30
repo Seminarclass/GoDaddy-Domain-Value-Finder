@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Link Opener</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 5px;
+        }
+
+        .button-container {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <label for="linkNames">Enter Domain Names (one per line): </label>
+    <textarea id="linkNames" rows="5" cols="30" placeholder="example1.com&#10;example2.com"></textarea>
+    <div class="button-container">
+        <button onclick="openLinks(1)">Open Links All</button>
+        <button onclick="openLinks(5)">Open Links 5 Sec</button>
+        <button onclick="openLinks(10)">Open Links 10 Sec</button>
+    </div>
+
+    <script>
+        function openLinks(delay) {
+            var linkNames = document.getElementById("linkNames").value;
+            var namesArray = linkNames.split("\n");
+            var currentIndex = 0;
+            
+            function openNextLink() {
+                if (currentIndex < namesArray.length) {
+                    var linkName = namesArray[currentIndex].trim();
+                    if (linkName !== "") {
+                        var link = "https://in.godaddy.com/domain-value-appraisal/appraisal/?domainToCheck=" + linkName;
+                        window.open(link, "_blank");
+                    }
+                    currentIndex++;
+                    setTimeout(openNextLink, delay * 1000);
+                }
+            }
+
+            openNextLink();
+        }
+    </script>
+</body>
+  </html>
+  
